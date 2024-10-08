@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="videosContainer"></div>
+
+    <script>
+// Fetch videos from an API
+const loadVideos = async () => {
+    const res = await fetch('https://openapi.programming-hero.com/api/phero-tube/videos');
+    const data = await res.json();
+    displayVideos(data.videos);  // Assuming data.videos is an array of video objects
+};
+
+// Function to display video cards dynamically
+const displayVideos = (videos) => {
+    const videosContainer = document.getElementById('videosContainer'); // Assuming there's a container in HTML
+    videosContainer.innerHTML = '';  // Clear previous content
+
+    videos.forEach(video => {
+        // Ternary operator to handle date display
+        const releaseDate = video.release_date ? video.release_date : 'No date available';
+
+        // Create a card for each video
+        const videoCard = `
+            <div class="video-card">
+                <img src="${video.thumbnail}" alt="${video.title}" />
+                <h3>${video.title}</h3>
+                <p>Duration: ${video.duration}</p>
+                <p>Release Date: ${releaseDate}</p> <!-- Using ternary to display date or fallback message -->
+            </div>
+        `;
+        videosContainer.innerHTML += videoCard;
+    });
+};
+
+// Load videos on page load
+loadVideos();
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Posts by Category</title>
+    <!-- daisyUI cdn -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.12/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="items-center flex flex-col gap-4">
+        <h1>Search Posts by Category</h1>
+    <div>
+    <input type="text" id="categoryInput" placeholder="Enter category" class="border-2 px-2 py-2">
+    <button onclick="fetchPosts()" class="btn">Search</button>
+    </div>
+    </div>
+
+    <div id="postsContainer"></div>
+
+    <!-- scripts -->
+     <script src="./zx.js"></script>
+    <!-- <script>
+        async function fetchPosts() {
+            const category = document.getElementById('categoryInput').value;
+            const apiUrl = `https://openapi.programming-hero.com/api/retro-forum/posts?category=${category}`;
+            
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                
+                const postsContainer = document.getElementById('postsContainer');
+                postsContainer.innerHTML = ''; // Clear previous results
+                
+                if (data.data.length > 0) {
+                    data.data.forEach(post => {
+                        const postElement = document.createElement('div');
+                        postElement.innerHTML = `
+                            <h3>${post.title}</h3>
+                            <p>${post.description}</p>
+                        `;
+                        postsContainer.appendChild(postElement);
+                    });
+                } else {
+                    postsContainer.innerHTML = '<p>No posts found for this category.</p>';
+                }
+            } catch (error) {
+                console.error('Error fetching posts:', error);
+            }
+        }
+    </script> -->
+</body>
+</html>
