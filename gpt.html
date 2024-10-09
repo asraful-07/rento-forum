@@ -13,13 +13,13 @@
 const loadVideos = async () => {
     const res = await fetch('https://openapi.programming-hero.com/api/phero-tube/videos');
     const data = await res.json();
-    displayVideos(data.videos);  // Assuming data.videos is an array of video objects
-};
+    displayVideos(data.videos);
+  }
 
 // Function to display video cards dynamically
 const displayVideos = (videos) => {
     const videosContainer = document.getElementById('videosContainer'); // Assuming there's a container in HTML
-    videosContainer.innerHTML = '';  // Clear previous content
+    videosContainer.innerHTML = '';  
 
     videos.forEach(video => {
         // Ternary operator to handle date display
